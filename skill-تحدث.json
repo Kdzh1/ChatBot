@@ -1,0 +1,194 @@
+{
+  "intents": [
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "اهلا"
+        },
+        {
+          "text": "مرحبا"
+        },
+        {
+          "text": "هلا"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تعريف",
+      "examples": [
+        {
+          "text": "بماذا تفيدونني"
+        },
+        {
+          "text": "خدماتكم"
+        },
+        {
+          "text": "ما هذه الصفحة"
+        },
+        {
+          "text": "من انتم"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Robot",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "خدمة",
+          "synonyms": [
+            "تقدم ",
+            "خدمات"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "روبوت",
+          "synonyms": [
+            "ربوت",
+            "رجل الي "
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "ترحيب",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اهلا, إسألني"
+              },
+              {
+                "text": "تفضل, كيف اخدمك؟"
+              },
+              {
+                "text": "مرحبا, كيف يمكنني مساعدتك؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#ترحيب",
+      "dialog_node": "node_5_1625358929706",
+      "previous_sibling": "node_5_1625535085110"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "هذه الصفحة خاصة بواجهة التجكم الخاصة بقاعدة الروبوت"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#تعريف",
+      "dialog_node": "node_5_1625535085110",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_5_1625358929706",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اهلا، كيف يمكنني مساعدتك؟"
+              },
+              {
+                "text": "تفضل, كيف اقدر اخدمك؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": ""
+}
